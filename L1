@@ -1,0 +1,24 @@
+import tkinter
+from tkinter import *
+main = Tk()
+main.geometry("500x500")
+main.config(background = "light blue")
+
+#heading of the page - label widget
+username = Label(main, text = "USERNAME", bg= "white", fg= "black")
+username.place(x = 50 ,y = 150)
+
+password = Label(main, text = "PASSWORD", bg = "white" , fg = "black" )
+password.place(x = 50, y = 250)
+
+#input boxes - entry widget
+username_input = Entry(main, width = 25).place(x = 150, y = 150)
+password_input = Entry(main, width = 25, bg = "black", fg = "white").place(x = 150, y = 250)
+
+
+#submit button - button widget
+submit = Button(main, text = "CONFIRM", bd = "5", bg = "black", fg = "white", command = main.destroy)
+submit.pack(side = "bottom")
+
+
+main.mainloop()
