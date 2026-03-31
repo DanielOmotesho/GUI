@@ -1,68 +1,56 @@
 from tkinter import *
 from tkinter import messagebox
 import random
+#messagebox.showinfo("INFORMATION","info_box")
+#messagebox.showwarning ("WARNING", "show_warning")
+#messagebox.showerror("ERROR","show_error")
 
+#result = messagebox.askquestion("ASK QUESTION", "ask _question")
 main = Tk()
-main.geometry("400x400")
-main.title("Jumble words game")
-main.config(bg = "white")
+main.geometry("300x300")
 
-scor_num = 0
+def ok():
+    name = name_box.get()
+    messagebox.showinfo("GUESS NUMBER","hi "+name+" im thinking of a number between 1 and 20")
 
-words = {
-    "apple":"papel",
-    "basket":"skabte",
-    "flashlight":"ghlaftlihs",
-    "bottle":"ttelob",
-    "olive":"eloiv",
-    "computer":"rmocptue"}
+random_num= random.randint(1,20)
+def game():
+    user = int(guess_box.get())
+    if user <random_num:
+        messagebox.showinfo("guess hint","too low")
 
-correct_wrd = ""
-jumbled_wrd = ""
+    elif user >random_num:
+        messagebox.showinfo("hint","too high")
 
-def random_wrd(): 
-    global correct_wrd, jumbled_wrd
-    correct_wrd, jumbled_wrd = random.choice(list (words.items()))
-    jumble_wrd_l.config (text =jumbled_wrd )
+    else: 
+        messagebox.showinfo("hint", "correct")
 
-def check_answer():
-    global correct_wrd, scor_num
-    guess = eb.get()
-    if guess == correct_wrd:
-        messagebox.showinfo("correct","you are correct")
-        scor_num += 1
-        scor.config(text= "SCORE:"+ str(scor_num))
+
+
+main.title("GUESS THE NUMBER GAME")
+label = Label(main,text =("WELCOME TO YOUR GAME"))
+label.pack()
+label2= Label(main,text=("enter your name:"))
+label2.place(x=10, y=90)
+
+
+name_box = Entry(main)
+name_box.place(x=10, y =110)
+
+#find button widget from rps code
+label3 = Label(main,text = ("take a guess!!"))
+label3.place(x=10, y=180)
+guess_box= Entry(main)
+guess_box.place(x=10, y=200)
+
+ok_btn = Button( width = 4, bd = 0, bg = 'white',text="ok", pady = 3, command = ok)
+ok_btn.place(x=140, y=110)
+
+guess_btn = Button( width = 4, bd = 0, bg = 'white',text="guess", pady = 3, command= game)
+guess_btn.place(x=140, y=200)
+
+
     
-        random_wrd()
-    else:
-        scor_num -= 1
-        scor.config(text = "SCORE:" + str(scor_num))
-
-
-
-scor = Label(main, text = "SCORE:" )
-scor.place(x=250, y=250)
-
-t = Label(main , text = "Jumble words game", font = 20)
-t.pack()
-
-jumble_wrd_l = Label(main , text = "")
-jumble_wrd_l.pack(pady= 30)
-
-eb = Entry(main)
-eb.pack(pady = 40)
-
-check_btn = Button(main, text = "CHECK",fg = "green", command = check_answer)
-check_btn.pack(pady = 30)
-
-reset_btn = Button(main, text = "RESET", command = random_wrd)
-reset_btn.pack (pady = 10)
-
-random_wrd()
-
-
-
-
 
 
 
